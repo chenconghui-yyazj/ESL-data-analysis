@@ -2,3 +2,7 @@
 check_pdf.py
 *.pyc
 __pycache__/
+_final_push.py
+_final_push.log
+_clean.log
+*.log
