@@ -1,0 +1,4 @@
+# 临时验证脚本（非交付内容）
+check_pdf.py
+*.pyc
+__pycache__/
