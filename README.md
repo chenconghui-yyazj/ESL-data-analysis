@@ -14,56 +14,68 @@
 维界投影数据分析/
 ├── 维界投影ESL数据分析报告.pdf      # 图文并茂报告（26页，可直接作为求职作品）
 ├── 维界投影ESL数据分析报告.html     # 网页版图文报告（浏览器直接打开）
-├── data/                           # ★ 爬取/收集的原始数据（全部带来源URL）
-│   ├── esl_market_data.{json,md}   #   全球/中国市场规模、出货量、区域占比
+├── README.md                        # 本说明
+├── requirements.txt                 # 依赖清单（pip install -r）
+├── data/                            # ★ 爬取/收集的原始数据（全部带来源URL，104个来源）
+│   ├── esl_market_data.{json,md}    #   全球/中国市场规模、出货量、区域占比
 │   ├── esl_competitor_industry.{json,md} # 竞品营收/市占、产业链
 │   ├── esl_policy_business.{json,md}     # 政策法规与商业模式
-│   └── *.csv                        #   10张结构化数据表（可导入Excel/Python）
+│   └── *.csv                         #   10张结构化数据表（可导入Excel/Python）
 ├── code/
-│   ├── make_datasets.py            # 数据清洗与规整脚本
-│   └── make_charts.py              # 可视化图表生成脚本
-├── images/                         # 12张可视化图表（含六宫格仪表盘）
+│   ├── make_datasets.py             # 数据清洗与规整脚本
+│   ├── make_charts.py               # 可视化图表生成脚本
+│   └── analysis.py                  # ★ 核心数据分析（CAGR/市占/渗透率等指标计算）
+├── images/                          # 12张可视化图表（含六宫格仪表盘）
 └── docs/
-    └── 分析全过程记录.md            # 收集→核验→可视化→报告→PDF 全流程
+    ├── 分析全过程记录.md             # 收集→核验→可视化→报告→PDF 全流程
+    ├── 核心分析指标.md               # ★ 由 analysis.py 自动生成的关键指标
+    ├── 数据字典.md                   # ★ 各数据文件字段说明
+    ├── 数据来源清单.md               # ★ 104 个来源 URL 汇总
+    └── 项目亮点与核心发现.md         # ★ 面试讲解要点（8条数据修正）
 ```
 
 ## 数据来源（真实可追溯）
 
-所有数据均标注来源 URL，覆盖权威机构与研究来源，包括但不限于：
+覆盖权威机构与研究来源，全部标注 URL：ePaper Insight / CINNO / 洛图科技、Global Market Insights / Grand View / Mordor 等国际市场机构、上市公司财报（Vusion、汉朔、京东方）、政策法规（商务部、欧盟 EUR-Lex）等。
 
-- ePaper Insight / CINNO / 洛图科技（电子纸与ESL产业研究）
-- Global Market Insights、Grand View Research、Mordor Intelligence 等国际市场研究机构
-- 上市公司财报：Vusion Group (SES-imagotag)、汉朔科技、京东方
-- 政策法规：商务部《数字商务三年行动计划》、欧盟 EUR-Lex（绿色零售/能源效率指令）等
-- 新闻与行业报道
-
-> 说明：不同机构市场规模口径存在差异，报告中已并存记录并标注 `estimate`（估算）或 `pending_note`（待核实），无任何编造数字；无法核实处已列入待核实清单。
+> 不同机构市场规模口径存在差异，报告中已并存记录并标注 `estimate`/`pending_note`，无编造数字。
 
 ## 分析维度
 
 1. 全球 ESL 市场规模及增长（多机构口径对比）
-2. 出货量趋势（2021—2025）
+2. 出货量趋势与 CAGR（2021—2025）
 3. 区域市场结构与增速（欧洲 / 亚太 / 北美）
 4. 中国市场与渗透率
-5. 竞品格局与市占（汉朔 / Vusion / 京东方 / Pricer）
+5. 竞品格局与市占
 6. 产业链（上游供应商 / 下游客户）
 7. 政策驱动时间线
 8. 客户 ROI 与付费能力
 9. SaaS 商业模式与财务验证
-10. 结论：数据如何支撑维界投影中台定位与开发方向
+10. 结论：数据如何支撑维界投影中台定位
 
-## 使用说明
+## 快速复现
 
 ```bash
-# 1. 安装依赖
-pip install pandas matplotlib
+pip install -r requirements.txt
+
+# 1. 计算核心指标（CAGR/市占/渗透率等）
+python code/analysis.py          # → docs/核心分析指标.md
 
 # 2. 生成可视化图表
-python code/make_charts.py
+python code/make_charts.py       # → images/
 
 # 3. 查看报告
-#   浏览器打开 维界投影ESL数据分析报告.html，或直接查看 PDF
+#    浏览器打开 维界投影ESL数据分析报告.html，或直接看 PDF
 ```
+
+## 核心发现速览
+
+- **市场大而分散**：头部个体市占合计约 84%、CR5 约 93.7%，无垄断 → 中立中台有切入空间；
+- **增速快**：出货量量级 CAGR 约 31.5%，ESL 从硬件升维为数字化入口；
+- **痛点真实**：多品牌混用致运维成本升 300%、换 ERP 单次损失约百万 → 兼容中台价值；
+- **商业模式可验证**：行业已出现 SaaS/服务收入，支撑"硬件 + SaaS"方向。
+
+> 详见 `docs/项目亮点与核心发现.md`（含 8 条数据修正，面试重点）。
 
 ## 作者
 

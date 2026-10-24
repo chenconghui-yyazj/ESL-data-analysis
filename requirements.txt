@@ -1,0 +1,7 @@
+# 维界投影 ESL 数据分析项目 依赖清单
+# 安装：pip install -r requirements.txt
+pandas>=1.5
+numpy>=1.23
+matplotlib>=3.6
+openpyxl>=3.0          # Excel 导出/读取
+pymupdf>=1.23          # PDF 预览与校验
